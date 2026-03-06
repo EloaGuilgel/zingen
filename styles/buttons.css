@@ -2,6 +2,7 @@
   --btn-bg-color: var(--text-color-primary);
   --btn-color: var(--bg-color);
   border: 0;
+  background-color: transparent;
 
   display: flex;
   align-items: center;
@@ -10,12 +11,14 @@
 
   border-radius: 0.5rem;
 
-  font: var(--fw-md) var(--fs-base)/1.5rem var(--ff-sans);
+  font: var(--fw-md) var(--fs-base) / 1.5rem var(--ff-sans);
 
   cursor: pointer;
+
   background: var(--btn-bg-color);
   color: var(--btn-color);
 }
+
 .btn:hover {
   --btn-bg-color: linear-gradient(
     90deg,
@@ -28,11 +31,11 @@
   background-clip: initial;
   color: var(--btn-color);
 }
+
 .btn-sm {
   padding: 0.5rem 1rem;
   font-size: var(--fs-sm);
 }
-
 .btn-md {
   padding: 0.75rem 1.5rem;
   font-size: var(--fs-base);
@@ -40,6 +43,28 @@
 .btn-lg {
   padding: 1rem 2rem;
   font-size: 1.125rem;
+}
+
+.btn[aria-label] {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    inset: 0.09375rem;
+    background-color: var(--bg-color);
+  }
+
+  &::after {
+    content: attr(aria-label);
+    background: var(--btn-bg-color);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @media (width >= 80em) {
